@@ -14,5 +14,7 @@ jobs:
             - run: |
                 npm ci
                 ls -la
+            - name: Booting simulator that mentioned in config file
+              run: xcrun simctl boot 'iPhone 17 Pro Max'
             - name: Run mobilewright test
               run: npx mobilewright test
