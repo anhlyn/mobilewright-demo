@@ -1,0 +1,22 @@
+name: Mobilewright Test
+on:
+    push:
+        branches: [main]
+    
+jobs:
+    ios-test:
+        runs-on: macos-14
+        steps:
+            - uses: actions/checkout@v4
+            - uses: actions/setup-node@v4
+              with:
+                node-version: 22
+            - run: |
+                pwd
+                npm ci
+            - name: list all available devices
+              run: xcrun simctl list devices available
+            - name: boot iOS simulator
+              run: xcrun simctl boot 'iPhone 17 Pro Max'
+            - name: Run mobilewright test
+              run: npx mobilewright test
