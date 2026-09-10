@@ -17,6 +17,27 @@ jobs:
                 ls -la
             - name: Booting simulator that mentioned in config file
               run: |
-                xcrun simctl boot 'iPhone 16'
+                DEVICE_UDID=$(xcrun simctl list devices available | grep "iPhone 17 Pro Max" | head -n 1 | sed -E 's/.*\(([0-9A-F-]+)\).*/\1/')
+                echo "Booting device: $DEVICE_UDID"
+                
+                # Boot thiết bị
+                xcrun simctl boot "$DEVICE_UDID" || true
+                
+                # Đợi hệ thống sẵn sàng mà không bị kẹt strict bootstatus
+                echo "Waiting for simulator to be fully booted..."
+                n=0
+                until [ $n -ge 15 ]
+                do
+                    STATE=$(xcrun simctl list devices | grep "$DEVICE_UDID" | awk '{print $NF}')
+                    if [ "$STATE" = "(Booted)" ]; then
+                    echo "Simulator is booted!"
+                    break
+                    fi
+                    sleep 5
+                    n=$((n+1))
+                done
+          
+                # Thêm một nhịp chờ cho SpringBoard ổn định hẳn
+                sleep 10
             - name: Run mobilewright test
               run: npx mobilewright test
