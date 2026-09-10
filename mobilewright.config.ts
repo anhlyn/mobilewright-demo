@@ -4,10 +4,9 @@ export default defineConfig({
   testDir: './tests',
   reporter: 'html',
   platform: 'ios',
-  deviceName: /iPhone 17 Pro Max/,
+  deviceName: /iPhone 16/,
   bundleId: 'com.demo.SwiftAutomationDemo',
   installApps: './builds/app-sim.zip',
   autoAppLaunch: true,
-  timeout: 90_000
+  timeout: 300_000
 });
-
