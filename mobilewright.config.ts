@@ -8,6 +8,6 @@ export default defineConfig({
   bundleId: 'com.demo.SwiftAutomationDemo',
   installApps: './builds/app-sim.zip',
   autoAppLaunch: true,
-  timeout: 60000
+  timeout: 90_000
 });
 

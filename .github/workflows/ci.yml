@@ -8,6 +8,7 @@ jobs:
         runs-on: macos-latest
         steps:
             - uses: actions/checkout@v4
+            - run: ls -la
             - uses: actions/setup-node@v4
               with:
                 node-version: 22
@@ -15,6 +16,8 @@ jobs:
                 npm ci
                 ls -la
             - name: Booting simulator that mentioned in config file
-              run: xcrun simctl boot 'iPhone 17 Pro Max'
+              run: |
+                xcrun simctl boot 'iPhone 17 Pro Max'
+                xcrun simctl bootstatus 'iPhone 17 Pro Max'
             - name: Run mobilewright test
               run: npx mobilewright test
