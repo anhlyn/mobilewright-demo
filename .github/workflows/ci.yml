@@ -18,7 +18,7 @@ jobs:
                 xcrun simctl list devices available
             - name: Booting simulator that mentioned in config file
               run: |
-                DEVICE_UDID=$(xcrun simctl list devices available | grep "iPhone 17 Pro Max" | head -n 1 | sed -E 's/.*\(([0-9A-F-]+)\).*/\1/')
+                DEVICE_UDID=$(xcrun simctl list devices available | grep "iPhone 16" | head -n 1 | sed -E 's/.*\(([0-9A-F-]+)\).*/\1/')
                 echo "Booting device: $DEVICE_UDID"
                 
                 # Boot thiết bị
