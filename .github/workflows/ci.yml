@@ -40,5 +40,7 @@ jobs:
           
                 # Thêm một nhịp chờ cho SpringBoard ổn định hẳn
                 sleep 10
+                xcrun simctl bootstatus "$DEVICE_UDID" -b
+                xcrun simctl ui "$DEVICE_UDID" appearance dark # hoặc mở sáng màn hình
             - name: Run mobilewright test
               run: npx mobilewright test
