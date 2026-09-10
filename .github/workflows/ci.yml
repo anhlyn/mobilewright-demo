@@ -5,7 +5,7 @@ on:
     
 jobs:
     ios-test:
-        runs-on: macos-latest
+        runs-on: macos-14
         steps:
             - uses: actions/checkout@v4
             - run: ls -la
@@ -17,7 +17,6 @@ jobs:
                 ls -la
             - name: Booting simulator that mentioned in config file
               run: |
-                xcrun simctl boot 'iPhone 17 Pro Max'
-                xcrun simctl bootstatus 'iPhone 17 Pro Max'
+                xcrun simctl boot 'iPhone 16'
             - name: Run mobilewright test
               run: npx mobilewright test
