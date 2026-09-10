@@ -14,9 +14,5 @@ jobs:
             - run: |
                 pwd
                 npm ci
-            - name: list all available devices
-              run: xcrun simctl list devices available
-            - name: boot iOS simulator
-              run: xcrun simctl boot 'iPhone 17 Pro Max'
             - name: Run mobilewright test
               run: npx mobilewright test
